@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peta Interaktif — Explore Indonesia</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    /* override kecil untuk peta agar pas di layout */
+    #map { height: 70vh; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+  </style>
+</head>
+<body>
+  <header class="site-header"><div class="container header-row"><a class="logo" href="index.html">Explore Indonesia</a><nav class="main-nav"><a href="index.html">Beranda</a></nav></div></header>
+
+  <main class="page-main container">
+    <section class="section">
+      <h1 class="section-title">Peta Interaktif</h1>
+      <p class="lead">Tandai lokasi unggulan dan klik marker untuk membuka halaman wilayah terkait.</p>
+
+      <div id="map" class="fade-up"></div>
+
+      <p class="muted" style="margin-top:12px">Catatan: peta menggunakan tile OpenStreetMap (memerlukan koneksi internet untuk memuat tiles).</p>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div><strong>Explore Indonesia</strong></div></div></div></footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    // Inisialisasi dan marker peta — definisi koordinat tiap wilayah:
+    (function initMap(){
+      const map = L.map('map', { zoomControl:true }).setView([-2.0, 118.0], 5);
+
+      // Tile Layer (OpenStreetMap)
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(map);
+
+      const regions = [
+        { name: 'Sumatra (Danau Toba)', coord: [2.602, 98.85], url:'sumatra.html' },
+        { name: 'Jawa (Borobudur)', coord: [-7.6079, 110.2038], url:'jawa.html' },
+        { name: 'Kalimantan (Tanjung Puting)', coord: [-2.812, 111.668], url:'kalimantan.html' },
+        { name: 'Sulawesi (Tana Toraja)', coord: [-3.077, 119.870], url:'sulawesi.html' },
+        { name: 'Bali & Nusa Tenggara (Ubud)', coord: [-8.5069, 115.2624], url:'bali.html' },
+        { name: 'Papua (Raja Ampat)', coord: [0.234, 130.655], url:'papua.html' }
+      ];
+
+      regions.forEach(r => {
+        const m = L.marker(r.coord).addTo(map);
+        m.bindPopup(`<strong>${r.name}</strong><br><a href="${r.url}">Buka halaman</a>`);
+      });
+
+      // Fit bounds to markers
+      const group = new L.featureGroup(regions.map(r => L.marker(r.coord)));
+      map.fitBounds(group.getBounds().pad(0.4));
+    })();
+  </script>
+</body>
+</html>
