@@ -57,6 +57,7 @@
       const group = new L.featureGroup(regions.map(r => L.marker(r.coord)));
       map.fitBounds(group.getBounds().pad(0.4));
     })();
+
   </script>
 </body>
 </html>

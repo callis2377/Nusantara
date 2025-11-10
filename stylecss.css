@@ -19,19 +19,67 @@ body{
     margin:0 auto;
     padding:20px
 }
-
-.site-header{
-    background:rgba(255,255,255,0.02);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(255,255,255,0.03);
-}
-
-.site-header .container{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
+/* =================== HEADER TRANSPARAN & LEMBUT =================== */
+.site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    background: transparent;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  
+  .logo-img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+  }
+  
+  .logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .main-nav a {
+    text-decoration: none;
+    margin-left: 22px;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .main-nav a:hover {
+    color: var(--accent);
+  }
+  
+  .scrolled {
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .scrolled .logo span {
+    color: var(--accent);
+  }
+ 
 .logo{
     font-weight:800;
     color:#e6eef8;
@@ -43,20 +91,26 @@ body{
     margin-left:14px;
     text-decoration:none;
 }
-
-.hero{
-    padding:28px 0;
-}
-
-.hero-inner {
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('indonesiaa.jpg') center/cover no-repeat;
+    overflow: hidden;
+  }
+  
+  .hero-inner {
     position: relative;
     z-index: 3;
-    max-width: 900px;       
-    margin: 0 auto;          
-    text-align: center;     
-    padding: 0 20px;        
-}
-
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    transform: translateY(50px); /* biar agak turun dikit */
+  }
 .search-row{
     display:flex;
     gap:8px;
@@ -193,3 +247,89 @@ input,textarea,select{
     color:#e6eef8;
 }
 
+.site-footer {
+    background: #0b3046;
+    color: #ddd;rgb(14, 14, 14)rgb(70, 86, 117)
+    padding: 60px 0 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+  }
+  
+  .footer-column h4 {
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-column ul li a {
+    text-decoration: none;
+    color: #bbb;
+    transition: color 0.3s ease;
+    font-size: 0.95rem;
+  }
+  
+  .footer-column ul li a:hover {
+    color: var(--accent);
+  }
+  
+  .footer-social {
+    display: flex;
+    gap: 14px;
+    margin-top: 12px;
+  }
+  
+  .footer-social a {
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .footer-social a:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    color: #888;
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 16px;
+    margin-top: 40px;
+  }
+
+
+body {
+    padding-top: 100px;
+  }
+  
+  body.home {
+    padding-top: 0;
+  }
+  
+  
