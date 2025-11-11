@@ -2,11 +2,11 @@
 <html lang="id">
 <head>
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/png" href="logooooo.png">
   <title>Peta Interaktif — Explore Indonesia</title>
   <link rel="stylesheet" href="stylecss.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    /* override kecil untuk peta agar pas di layout */
     #map { height: 70vh; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
   </style>
 </head>
@@ -33,7 +33,6 @@
     (function initMap(){
       const map = L.map('map', { zoomControl:true }).setView([-2.0, 118.0], 5);
 
-      // Tile Layer (OpenStreetMap)
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19,
         attribution: '&copy; OpenStreetMap contributors'
@@ -53,7 +52,6 @@
         m.bindPopup(`<strong>${r.name}</strong><br><a href="${r.url}">Buka halaman</a>`);
       });
 
-      // Fit bounds to markers
       const group = new L.featureGroup(regions.map(r => L.marker(r.coord)));
       map.fitBounds(group.getBounds().pad(0.4));
     })();
